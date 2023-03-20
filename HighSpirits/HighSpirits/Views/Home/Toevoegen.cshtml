@@ -1,0 +1,68 @@
+﻿@model VMtoevoegen;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Toevoegen</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="m-3">
+    <form asp-action="Toevoegen" asp-controller="Home">
+        <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png"/> - artikel toevoegen aan winkelmandje </h2>
+        <table class="table text-center">
+            <tr>
+                <td rowspan="5">
+                    <img class="artikelGroot" src="@Url.Content("~/images/"+Model.product.Foto)" />
+                </td>
+                <td>
+                    ArtNr.
+                </td>
+                <td>
+                    @Model.product.ProductID
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   Naam
+                </td>
+                <td>
+                    @Model.product.ProductNaam
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Verkoopprijs
+                </td>
+                <td>
+                    @Model.product.Verkoopprijs
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Voorraad
+                </td>
+                <td>
+                    @Model.product.Voorraad
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Omschrijving
+                </td>
+                <td>
+                    @Model.product.Omschrijving
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p>Aantal toe te voegen aan winkelmandje: <input type="text" asp-for="@Model.winkelmandje.Aantalstuks" /> <input type="submit" value="Voeg aan winkelmandje toe..." /></p>
+                </td>
+            </tr>   
+        </table>
+        <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>
+    </form>
+</body>
+</html>

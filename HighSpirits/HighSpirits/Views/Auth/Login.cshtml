@@ -1,0 +1,29 @@
+﻿@model LoginCredentials;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>login</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    
+</head>
+<body class="m-3">
+    <form asp-action="Login" asp-controller="auth">
+        <h2>Inloggen</h2>
+        <table class="table">
+            <tr>
+                <td>Gebruikersnaam</td>
+                <td><input type="text" asp-for="Gebruikersnaam" /><span asp-validation-for="Gebruikersnaam"></span></td>
+            </tr>
+            <tr>
+                <td>Wachtwoord</td>
+                <td><input type="password" asp-for="Wachtwoord" /><span asp-validation-for="Wachtwoord"></span></td>
+            </tr>
+        </table>
+        <p><input type="submit" value="Meld mij aan..." /> <a asp-action="Registreer" class="geenLijn">Registreer hier...</a></p> 
+        <p class="fout">@ViewBag.fout</p>
+    </form>
+</body>
+</html>

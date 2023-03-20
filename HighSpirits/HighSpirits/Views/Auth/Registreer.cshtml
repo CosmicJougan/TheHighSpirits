@@ -1,0 +1,62 @@
+﻿@model Registratie;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registreer</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body class="m-3">
+    <form asp-action="Registreer" asp-controller="auth">
+        <h2>Inloggen</h2>
+        <table class="table">
+            <tr>
+                <td>Naam</td>
+                <td><input type="text" asp-for="Naam" /><span asp-validation-for="Naam"></span></td>
+            </tr>
+            <tr>
+                <td>Voornaam</td>
+                <td><input type="text" asp-for="Voornaam" /><span asp-validation-for="Voornaam"></span></td>
+            </tr>
+            <tr>
+                <td>Gebruikersnaam</td>
+                <td><input type="text" asp-for="Gebruikersnaam" /><span asp-validation-for="Gebruikersnaam"></span></td>
+            </tr>
+            <tr>
+                <td>Wachtwoord</td>
+                <td><input type="password" asp-for="Wachtwoord" /><span asp-validation-for="Wachtwoord"></span></td>
+            </tr>
+            <tr>
+                <td>Bevestig Wachtwoord</td>
+                <td><input type="password" asp-for="BevestigWW" /><span asp-validation-for="BevestigWW"></span></td>
+            </tr>
+            <tr>
+                <td>E-mail adres</td>
+                <td><input type="email" asp-for="Email" /><span asp-validation-for="Email"></span></td>
+            </tr>
+            <tr>
+                <td>Telefoon nummer</td>
+                <td><input type="number" asp-for="Telefoonnummer" /><span asp-validation-for="Telefoonnummer"></span></td>
+            </tr>
+            <tr>
+                <td>Adres</td>
+                <td><input type="text" asp-for="Adress" /><span asp-validation-for="Adress"></span></td>
+            </tr>
+            <tr>
+                <td>PostCode</td>
+                <td><input type="text" asp-for="PostCode" /><span asp-validation-for="PostCode"></span></td>
+            </tr>
+            <tr>
+                <td>Geboorte Datum</td>
+                <td><input type="datetime" asp-for="Geboortedatum" /><span asp-validation-for="Geboortedatum"></span></td>
+            </tr>
+            
+        </table>
+        <p><input type="submit" value="Meld mij aan..." /></p>
+        <p class="fout">@ViewBag.fout</p>
+    </form>
+</body>
+</html>

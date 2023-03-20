@@ -1,0 +1,70 @@
+﻿@model ProductRepository;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Webshop</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="m-3">
+    <form asp-action="Index" asp-controller="Home">
+        <p class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png"/></p>
+        <h3 class="text-center">Make driving great again.</h3>
+        <table class="table text-center">
+            <tr>
+                <td>
+                    Artikel nr.
+                </td>
+                <td>
+                    Naam
+                </td>
+                <td>
+                    Foto
+                </td>
+                <td>
+                    Verkoopprijs
+                </td>
+                <td>
+                    Voorraad
+                </td>
+                <td>
+                    <p></p>
+                </td>
+            </tr>
+            @foreach(var artikel in Model.Producten){
+                <tr>
+                    <td>
+                        @artikel.ProductID
+                    </td>
+                    <td>
+                        @artikel.ProductNaam
+                    </td>
+                    <td>
+                        <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)"/>
+                    </td>
+                    <td>
+                        @artikel.Verkoopprijs
+                    </td>
+                    <td>
+                        @artikel.Voorraad
+                    </td>
+                    <td>
+                        <p><a asp-action="Toevoegen" asp-route-ProductID="@artikel.ProductID" class="geenLijn">Voeg toe aan winkelmandje...</a></p>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="5">
+                    <input type="submit" value="Naar winkelmandje..." />
+                    <p>
+                        <a asp-action="Afmelden" asp-controller="Auth">afmelden</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
