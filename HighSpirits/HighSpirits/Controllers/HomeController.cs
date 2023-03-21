@@ -13,7 +13,7 @@ namespace HighSpirits.Controllers
     {
         PersistenceCode pc = new PersistenceCode();
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult Index()
         {
@@ -22,7 +22,7 @@ namespace HighSpirits.Controllers
             return View(productRepository);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public IActionResult Index(ProductRepository productRepository)
         {
@@ -30,7 +30,7 @@ namespace HighSpirits.Controllers
             return View(productRepository);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult Toevoegen(int ProductID)
         {
@@ -45,7 +45,7 @@ namespace HighSpirits.Controllers
             return View(vmToevoegen);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public IActionResult Toevoegen(VMtoevoegen vmToevoegen)
 
@@ -60,8 +60,14 @@ namespace HighSpirits.Controllers
             winkelmandje.Aantalstuks = vmToevoegen.winkelmandje.Aantalstuks;
             vmToevoegen.winkelmandje = winkelmandje;
 
-            pc.insertInWinkelmandje(vmToevoegen.winkelmandje);
-
+            if (pc.checkProduct(winkelmandje))
+            {
+                pc.updateWinkelmandje(winkelmandje);
+            }
+            else
+            {
+                pc.insertInWinkelmandje(vmToevoegen.winkelmandje);
+            }
             return RedirectToAction("Index");
         }
     }

@@ -57,16 +57,115 @@ namespace HighSpirits.Persistence
             return product;
         }
 
+
+        //Haal hte aantal stuks op van database
+        public int zoekAantalstuks(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "select aantalstuks from tblwinkelmandje where KlantId=" + winkelmandje.KlantId + " and ProductId="+winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            int stuks = 0;
+            while (dtr.Read())
+            {
+               stuks = dtr.GetInt32("aantalstuks");
+
+            }
+            conn.Close();
+            return stuks;
+        }
+
+        //haal op hoeveel in voorraad er nog over is
+        public int zoekVoorraad(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "select voorraad from tblproducten where ProductId=" + winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            int stuks = 0;
+            while (dtr.Read())
+            {
+                stuks = dtr.GetInt32("aantalstuks");
+
+            }
+            conn.Close();
+            return stuks;
+        }
+
+        //Verminder voorraad
+        public void verminderVoorrraad(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "update tblproducten set voorraad = voorraad-"+winkelmandje.Aantalstuks+" where ProductId="+winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        //kijk voor unieke producten in winkelmandje
+        public bool checkProduct(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "select KlantId, ProductId from tblwinkelmandje where KlantId=" + winkelmandje.KlantId + " and ProductId=" + winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            bool bestaat = false;
+            while (dtr.Read())
+            {
+                bestaat = true;
+            }
+            conn.Close();
+            return bestaat;
+        }
+
+        //laad winkelmandje
+        public Winkelmandje laadWinkelmandje(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "select * from tblwinkelmandje where KlantId=" + winkelmandje.KlantId + " and ProductId=" + winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            Winkelmandje wm = new Winkelmandje();
+            while (dtr.Read())
+            {
+                wm.KlantId = dtr.GetInt32("KlantId");
+                wm.ProductId = dtr.GetInt32("ProductId");
+                wm.Aantalstuks = dtr.GetInt32("Aantalstuks");
+            }
+            conn.Close();
+            return wm;
+        }
+
         //Product in winkelmandje opslaan
         public void insertInWinkelmandje(Winkelmandje winkelmandje)
         {
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
             string qry = "insert into tblwinkelmandje (KlantID, ProductID, aantalstuks) " +
-                "values("+winkelmandje.KlantId+","+winkelmandje.ProductId+","+winkelmandje.Aantalstuks+")";
+                "values(" + winkelmandje.KlantId + "," + winkelmandje.ProductId + "," + winkelmandje.Aantalstuks + ")";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
+            verminderVoorrraad(laadWinkelmandje(winkelmandje));
+        }
+
+        //aantal stuks van product updaten in winkelmandje
+        public void updateWinkelmandje(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            int corrStuks = winkelmandje.Aantalstuks + zoekAantalstuks(winkelmandje);
+            conn.Open();
+            string qry = "update tblwinkelmandje set aantalstuks = " +
+                 + corrStuks + " where KlantId=" + winkelmandje.KlantId + " and ProductId="+winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            verminderVoorrraad(laadWinkelmandje(winkelmandje));
         }
 
         //kijk of user ingelogd is
