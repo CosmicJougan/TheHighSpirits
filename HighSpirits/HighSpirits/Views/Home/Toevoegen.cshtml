@@ -4,10 +4,10 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Toevoegen</title>
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Toevoegen</title>
 </head>
 <body class="m-3">
     <form asp-action="Toevoegen" asp-controller="Home">
@@ -63,6 +63,7 @@
             </tr>   
         </table>
         <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>
+        <p class="text-center text-danger font-weight-bold">@ViewBag.Fout</p>
     </form>
 </body>
 </html>

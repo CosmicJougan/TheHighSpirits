@@ -7,3 +7,7 @@
 .geenLijn{
     text-decoration:none;
 }
+.fout{
+    color: red;
+    font-weight: bold;
+}

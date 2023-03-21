@@ -87,7 +87,7 @@ namespace HighSpirits.Persistence
             int stuks = 0;
             while (dtr.Read())
             {
-                stuks = dtr.GetInt32("aantalstuks");
+                stuks = dtr.GetInt32("voorraad");
 
             }
             conn.Close();
@@ -165,7 +165,7 @@ namespace HighSpirits.Persistence
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
-            verminderVoorrraad(laadWinkelmandje(winkelmandje));
+            verminderVoorrraad(winkelmandje);
         }
 
         //kijk of user ingelogd is

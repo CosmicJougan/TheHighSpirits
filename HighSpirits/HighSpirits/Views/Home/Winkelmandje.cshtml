@@ -1,0 +1,57 @@
+﻿@model VMwinkelmandje;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Winkelmandje</title>
+</head>
+<body class="m-3">
+    <form asp-action="Winkelmandje" asp-controller="Home">
+        <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> - artikel toevoegen aan winkelmandje </h2>
+        <table class="table">
+            <tr>
+                <td>
+                    Klantnummer:
+                </td>
+                <td>
+                    @Model.Klant.KlantId
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Naam:
+                </td>
+                <td>
+                    @Model.Klant.Naam
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -60,15 +60,24 @@ namespace HighSpirits.Controllers
             winkelmandje.Aantalstuks = vmToevoegen.winkelmandje.Aantalstuks;
             vmToevoegen.winkelmandje = winkelmandje;
 
-            if (pc.checkProduct(winkelmandje))
+            if(pc.zoekVoorraad(winkelmandje) > winkelmandje.Aantalstuks)
             {
-                pc.updateWinkelmandje(winkelmandje);
+                if (pc.checkProduct(winkelmandje))
+                {
+                    pc.updateWinkelmandje(winkelmandje);
+                }
+                else
+                {
+                    pc.insertInWinkelmandje(vmToevoegen.winkelmandje);
+                }
+                return RedirectToAction("Index");
             }
             else
             {
-                pc.insertInWinkelmandje(vmToevoegen.winkelmandje);
+                ViewBag.Fout = "Niet genoeg voorraad over. Pak minder, alchoholist.";
+                return View(vmToevoegen);
             }
-            return RedirectToAction("Index");
+            
         }
     }
 }
