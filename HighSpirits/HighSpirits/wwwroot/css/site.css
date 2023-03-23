@@ -11,3 +11,6 @@
     color: red;
     font-weight: bold;
 }
+.noBorders{
+    border: hidden;
+}

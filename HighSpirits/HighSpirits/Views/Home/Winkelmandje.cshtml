@@ -12,7 +12,7 @@
 <body class="m-3">
     <form asp-action="Winkelmandje" asp-controller="Home">
         <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> - artikel toevoegen aan winkelmandje </h2>
-        <table class="table">
+        <table class="table noBorders">
             <tr>
                 <td>
                     Klantnummer:
@@ -29,28 +29,91 @@
                     Naam:
                 </td>
                 <td>
-                    @Model.Klant.Naam
+                    @Model.Klant.Voornaam @Model.Klant.Naam
                 </td>
                 <td>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    Adres:
+                </td>
+                <td>
+                    @Model.Klant.Adress
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    @Model.Klant.PostCode @Model.Klant.Plaats
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Bestel datum:
+                </td>
+                <td>
+                    @ViewBag.Datum
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        <table class="table">
             <tr>
                 <td>
 
                 </td>
                 <td>
+                    Foto
                 </td>
                 <td>
+                    ArtikelNr.
+                </td>
+                <td>
+                    Naam
+                </td>
+                <td>
+                    Aantal
+                </td>
+                <td>
+                    Prijs
+                </td>
+                <td>
+                    Totaal
                 </td>
             </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
+            @foreach (var artikel in Model.productRepository.Producten)
+            {
+                <tr>
+                    <td>
+                        <input type="button" asp-action="uitWinkelmandje" value="delete"/>
+                    </td>
+                    <td>
+                        <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)" />
+                    </td>
+                    <td>
+                        @artikel.ProductID
+                    </td>
+                    <td>
+                        @artikel.ProductNaam
+                    </td>
+                    <td>
+                        @artikel.Voorraad
+                    </td>
+                    <td>
+                        €@artikel.Verkoopprijs
+                    </td>
+                    <td>
+                        €@(Math.Round(artikel.Verkoopprijs * artikel.Voorraad,2))
+                    </td>
+                </tr>
+            }
         </table>
     </form>
 </body>

@@ -21,6 +21,8 @@ namespace HighSpirits.Models
 
         public string Adress { get; set; }
 
+        public string Plaats { get; set; }
+
         public string PostCode { get; set; }
 
         public DateTime Geboortedatum { get; set; }

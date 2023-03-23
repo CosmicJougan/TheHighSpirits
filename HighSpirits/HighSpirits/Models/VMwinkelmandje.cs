@@ -6,5 +6,7 @@
         public LoginCredentials Klant { get; set; }
         
         public WinkelmandjeRepository winkelmandjeRepository { get; set; }
+
+        public ProductRepository productRepository { get; set; }
     }
 }

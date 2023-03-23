@@ -1,9 +1,12 @@
 ﻿using HighSpirits.Models;
 using HighSpirits.Persistence;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using System.Security.Claims;
 using System.Diagnostics;
 
 
@@ -15,19 +18,27 @@ namespace HighSpirits.Controllers
 
         //[Authorize]
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(ProductRepository productRepository)
         {
-            ProductRepository productRepository = new ProductRepository();
+            var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, 1.ToString())
+                    };
+            var userIdentity = new ClaimsIdentity(claims, "SecureLogin");
+            var userPrincipal = new ClaimsPrincipal(userIdentity);
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                userPrincipal,
+                new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(2), IsPersistent = false });
+
             productRepository.Producten = pc.loadProducten();
             return View(productRepository);
         }
 
         //[Authorize]
         [HttpPost]
-        public IActionResult Index(ProductRepository productRepository)
+        public IActionResult Index()
         {
-            productRepository.Producten = pc.loadProducten();
-            return View(productRepository);
+            return RedirectToAction("Winkelmandje");
         }
 
         //[Authorize]
@@ -79,5 +90,28 @@ namespace HighSpirits.Controllers
             }
             
         }
+
+        //[Autherize]
+        [HttpGet]
+        public IActionResult Winkelmandje()
+        {
+            VMwinkelmandje vmWinkelmandje = new VMwinkelmandje();
+
+            Winkelmandje winkelmandje = new Winkelmandje();
+            winkelmandje = pc.laadWinkelmandje(Convert.ToInt32(User.Identity.Name));
+
+            LoginCredentials klant = new LoginCredentials();
+            klant = pc.laadKlant(Convert.ToInt32(User.Identity.Name));
+            vmWinkelmandje.Klant = klant;
+
+            ProductRepository productRepository = new ProductRepository();
+            productRepository.Producten = pc.laadWinkelmandjeProducten(winkelmandje);
+            vmWinkelmandje.productRepository = productRepository;
+
+
+
+            return View(vmWinkelmandje);
+        }
+
     }
 }

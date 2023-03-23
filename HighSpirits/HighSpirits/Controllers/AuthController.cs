@@ -27,7 +27,7 @@ namespace HighSpirits.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, 1.ToString())
+                        new Claim(ClaimTypes.Name, pc.zoekKlantId(loginCr.Gebruikersnaam).ToString())
                     };
                     var userIdentity = new ClaimsIdentity(claims, "SecureLogin");
                     var userPrincipal = new ClaimsPrincipal(userIdentity);
