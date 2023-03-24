@@ -281,11 +281,11 @@ namespace HighSpirits.Persistence
             return list;
         }
         //laad winkelmandje voor verminderen van voorraad
-        public Winkelmandje laadWinkelmandje(int KlantID)
+        public Winkelmandje laadWinkelmandje(Winkelmandje winkelmandje)
         {
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            string qry = "select * from tblwinkelmandje where KlantId=" + KlantID;
+            string qry = "select * from tblwinkelmandje where KlantId=" + winkelmandje.KlantId + " and ProductId="+ winkelmandje.ProductId;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             Winkelmandje wm = new Winkelmandje();
@@ -298,5 +298,52 @@ namespace HighSpirits.Persistence
             conn.Close();
             return wm;
         }
+
+        //haal de prijs totalen op voor winkelmandje
+        public Totalen haalTotalen(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "select Round(sum(aankoopprijs*1.13*aantalstuks),2) as VerkoopPrijsExcl, Round(sum(aankoopprijs*0.21*aantalstuks),2) as BTW, ( Round(sum(aankoopprijs*1.13*aantalstuks),2)+Round(sum(aankoopprijs*0.21*aantalstuks),2)) as VerkoopPrijsIncl from tblProducten " +
+                "inner join tblwinkelmandje on tblproducten.productId = tblwinkelmandje.productId where KlantId=" + winkelmandje.KlantId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            Totalen totalen = new Totalen();
+            while (dtr.Read())
+            {
+                totalen.PrijsExclusief = dtr.GetDouble("VerkoopPrijsExcl");
+                totalen.BTW = dtr.GetDouble("BTW");
+                totalen.PrijsInclusief = dtr.GetDouble("VerkoopPrijsIncl");
+
+            }
+            conn.Close();
+            return totalen;
+        }
+
+        //Vermeerder voorraad na delete
+
+        public void vermeerderVoorrraad(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "update tblproducten set voorraad = voorraad+" + winkelmandje.Aantalstuks + " where ProductId=" + winkelmandje.ProductId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        //delete uit winkelmandje
+        
+        public void deleteUitWinkelmandje(Winkelmandje winkelmandje)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            vermeerderVoorrraad(winkelmandje);
+            conn.Open();
+            string qry = "delete from tblwinkelmandje where ProductId=" + winkelmandje.ProductId + " and KlantId="+ winkelmandje.KlantId;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
     }
 }

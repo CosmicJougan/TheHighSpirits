@@ -14,3 +14,7 @@
 .noBorders{
     border: hidden;
 }
+.rechts{
+    right: 0px;
+    text-align:right;
+}

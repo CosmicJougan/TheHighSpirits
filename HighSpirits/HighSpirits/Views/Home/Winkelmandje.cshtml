@@ -92,7 +92,7 @@
             {
                 <tr>
                     <td>
-                        <input type="button" asp-action="uitWinkelmandje" value="delete"/>
+                        <a asp-action="delete" asp-route-ProductID="@artikel.ProductID">wordt logo</a>
                     </td>
                     <td>
                         <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)" />
@@ -115,6 +115,33 @@
                 </tr>
             }
         </table>
+        <table>
+            <tr >
+                <td>
+                    Totaal Excl.:
+                </td>
+                <td>
+                    @Model.totalen.PrijsExclusief
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    BTW (21%):
+                </td>
+                <td>
+                    @Model.totalen.BTW
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Totaal Incl.:
+                </td>
+                <td>
+                    @Model.totalen.PrijsInclusief
+                </td>
+            </tr>
+        </table>
+        <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>
     </form>
 </body>
 </html>
