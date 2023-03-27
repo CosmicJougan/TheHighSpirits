@@ -134,9 +134,8 @@ namespace HighSpirits.Controllers
 
         //[Autherize]
         [HttpGet]
-        public IActionResult Winkelmandje()
+        public IActionResult Winkelmandje(VMwinkelmandje vmWinkelmandje)
         {
-            VMwinkelmandje vmWinkelmandje = new VMwinkelmandje();
 
             Winkelmandje winkelmandje = new Winkelmandje();
             winkelmandje.KlantId = Convert.ToInt32(User.Identity.Name);
@@ -157,6 +156,18 @@ namespace HighSpirits.Controllers
             ViewBag.Datum = BestelDatum;
 
             return View(vmWinkelmandje);
+        }
+
+        [HttpPost]
+        public IActionResult Winkelmandje()
+        {
+            return RedirectToAction("BestelBevestiging");
+        }
+
+        [HttpGet]
+        public IActionResult BestelBevestiging(VMbestellingen vmBestellingen)
+        {
+            return View(vmBestellingen);
         }
 
     }

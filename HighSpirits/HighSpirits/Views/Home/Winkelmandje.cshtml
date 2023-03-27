@@ -88,29 +88,41 @@
                     Totaal
                 </td>
             </tr>
-            @foreach (var artikel in Model.productRepository.Producten)
+            @if (Model.productRepository.Producten is not null){
+                @foreach (var artikel in Model.productRepository.Producten)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="delete" asp-route-ProductID="@artikel.ProductID">wordt logo</a>
+                        </td>
+                        <td>
+                            <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)" />
+                        </td>
+                        <td>
+                            @artikel.ProductID
+                        </td>
+                        <td>
+                            @artikel.ProductNaam
+                        </td>
+                        <td>
+                            @artikel.Voorraad
+                        </td>
+                        <td>
+                            €@artikel.Verkoopprijs
+                        </td>
+                        <td>
+                            €@(Math.Round(artikel.Verkoopprijs * artikel.Voorraad, 2))
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
                     <td>
-                        <a asp-action="delete" asp-route-ProductID="@artikel.ProductID">wordt logo</a>
-                    </td>
-                    <td>
-                        <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)" />
-                    </td>
-                    <td>
-                        @artikel.ProductID
-                    </td>
-                    <td>
-                        @artikel.ProductNaam
-                    </td>
-                    <td>
-                        @artikel.Voorraad
-                    </td>
-                    <td>
-                        €@artikel.Verkoopprijs
-                    </td>
-                    <td>
-                        €@(Math.Round(artikel.Verkoopprijs * artikel.Voorraad,2))
+                        <p>
+                            Je winkelmandje is leeg.
+                        </p>
                     </td>
                 </tr>
             }
@@ -141,6 +153,7 @@
                 </td>
             </tr>
         </table>
+        <p class="text-center"><input type="submit" value="Bestellen en betalen" /></p>
         <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>
     </form>
 </body>

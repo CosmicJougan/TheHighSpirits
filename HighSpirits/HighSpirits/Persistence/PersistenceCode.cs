@@ -345,5 +345,18 @@ namespace HighSpirits.Persistence
             conn.Close();
         }
 
+        //winkemandje items in bestelling opslaan
+
+        public void bestelItems(Winkelmandje winkelmandje)
+        {
+            Bestellijn bestelLijn = new Bestellijn();
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "insert into tblbestellijn (BestelingID, historischeprijs, aantal) " +
+                "values(" + bestelLijn.BestellingId + "," + bestelLijn.HistorischePrijs + "," + bestelLijn.Aantalstuks + ")";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }
