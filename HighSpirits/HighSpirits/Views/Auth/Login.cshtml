@@ -9,9 +9,9 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     
 </head>
-<body class="m-3">
+<body class="m-3 midden">
     <form asp-action="Login" asp-controller="auth">
-        <h2>Inloggen</h2>
+        <p class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /></p><h2>Inloggen</h2>
         <table class="table">
             <tr>
                 <td>Gebruikersnaam</td>
@@ -22,7 +22,7 @@
                 <td><input type="password" asp-for="Wachtwoord" /><span class="fout" asp-validation-for="Wachtwoord"></span></td>
             </tr>
         </table>
-        <p><input type="submit" value="Meld mij aan..." /> <a asp-action="Registreer" class="geenLijn">Registreer hier...</a></p> 
+        <p><input class="btn btn-dark" type="submit" value="Meld mij aan..." /> <a asp-action="Registreer" class="geenLijn">Registreer hier...</a></p>
         <p class="fout">@ViewBag.fout</p>
     </form>
 </body>

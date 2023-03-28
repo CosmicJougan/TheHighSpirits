@@ -18,3 +18,12 @@
     right: 0px;
     text-align:right;
 }
+.midden{
+    vertical-align: middle;
+    transform: translateY("-50%");
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+}
