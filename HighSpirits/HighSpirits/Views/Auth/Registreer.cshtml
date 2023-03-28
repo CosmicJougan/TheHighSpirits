@@ -11,51 +11,51 @@
 </head>
 <body class="m-3">
     <form asp-action="Registreer" asp-controller="auth">
-        <h2>Inloggen</h2>
+        <h2>Registreren</h2>
         <table class="table">
             <tr>
                 <td>Naam</td>
-                <td><input type="text" asp-for="Naam" /><span asp-validation-for="Naam"></span></td>
+                <td><input type="text" asp-for="Naam" /><span class="fout" asp-validation-for="Naam"></span></td>
             </tr>
             <tr>
                 <td>Voornaam</td>
-                <td><input type="text" asp-for="Voornaam" /><span asp-validation-for="Voornaam"></span></td>
+                <td><input type="text" asp-for="Voornaam" /><span class="fout" asp-validation-for="Voornaam"></span></td>
             </tr>
             <tr>
                 <td>Gebruikersnaam</td>
-                <td><input type="text" asp-for="Gebruikersnaam" /><span asp-validation-for="Gebruikersnaam"></span></td>
+                <td><input type="text" asp-for="Gebruikersnaam" /><span class="fout" asp-validation-for="Gebruikersnaam"></span></td>
             </tr>
             <tr>
                 <td>Wachtwoord</td>
-                <td><input type="password" asp-for="Wachtwoord" /><span asp-validation-for="Wachtwoord"></span></td>
+                <td><input type="password" asp-for="Wachtwoord" /><span class="fout" asp-validation-for="Wachtwoord"></span></td>
             </tr>
             <tr>
                 <td>Bevestig Wachtwoord</td>
-                <td><input type="password" asp-for="BevestigWW" /><span asp-validation-for="BevestigWW"></span></td>
+                <td><input type="password" asp-for="BevestigWW" /><span class="fout" asp-validation-for="BevestigWW"></span></td>
             </tr>
             <tr>
                 <td>E-mail adres</td>
-                <td><input type="email" asp-for="Email" /><span asp-validation-for="Email"></span></td>
+                <td><input type="email" asp-for="Email" /><span class="fout" asp-validation-for="Email"></span></td>
             </tr>
             <tr>
                 <td>Telefoon nummer</td>
-                <td><input type="number" asp-for="Telefoonnummer" /><span asp-validation-for="Telefoonnummer"></span></td>
+                <td><input type="number" asp-for="Telefoonnummer" /><span class="fout" asp-validation-for="Telefoonnummer"></span></td>
             </tr>
             <tr>
                 <td>Adres</td>
-                <td><input type="text" asp-for="Adress" /><span asp-validation-for="Adress"></span></td>
+                <td><input type="text" asp-for="Adress" /><span class="fout" asp-validation-for="Adress"></span></td>
             </tr>
             <tr>
                 <td>Plaats</td>
-                <td><input type="text" asp-for="Plaats" /><span asp-validation-for="Plaats"></span></td>
+                <td><input type="text" asp-for="Plaats" /><span class="fout" asp-validation-for="Plaats"></span></td>
             </tr>
             <tr>
                 <td>PostCode</td>
-                <td><input type="text" asp-for="PostCode" /><span asp-validation-for="PostCode"></span></td>
+                <td><input type="text" asp-for="PostCode" /><span class="fout" asp-validation-for="PostCode"></span></td>
             </tr>
             <tr>
                 <td>Geboorte Datum</td>
-                <td><input type="datetime" asp-for="Geboortedatum" /><span asp-validation-for="Geboortedatum"></span></td>
+                <td><input type="datetime" asp-for="Geboortedatum" /><span class="fout" asp-validation-for="Geboortedatum"></span></td>
             </tr>
             
         </table>

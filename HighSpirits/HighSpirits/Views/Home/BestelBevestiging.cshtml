@@ -11,9 +11,9 @@
 </head>
 <body class="m-3">
     <div class="text-center">
-        <p class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> - Bestelbevestiging</p>
-        <p>We hebben u bestelling met bestelnummer <span>@Model.bestelling.BestellingId</span> goed ontvangen.</p>
-        <p>Na overschrijving van € <span>@Model.totalen.PrijsInclusief</span> op rekeningnummer <span>BE41 0019 4020 4710</span> worden de goederen verpakt en verstuurd.</p>
+        <p class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> <h2>Bestelbevestiging</h2></p>
+        <p>We hebben u bestelling met bestelnummer <span> @Model.bestelling.BestellingId </span> goed ontvangen.</p>
+        <p>Na overschrijving van € <span> @Model.totalen.PrijsInclusief </span> op rekeningnummer <span>BE41 0019 4020 4710</span> worden de goederen verpakt en verstuurd.</p>
         <p>U ontving deze bevestiging ook via e-mail.</p>
         <p>Bedankt voor u vertrouwen.</p>
         <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>

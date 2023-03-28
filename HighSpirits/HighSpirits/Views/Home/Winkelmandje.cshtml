@@ -88,7 +88,7 @@
                     Totaal
                 </td>
             </tr>
-            @if (Model.productRepository.Producten is not null){
+            @if (Model.productRepository.Producten.Count>0){
                 @foreach (var artikel in Model.productRepository.Producten)
                 {
                     <tr>
@@ -121,7 +121,7 @@
                 <tr>
                     <td>
                         <p>
-                            Je winkelmandje is leeg.
+                            @ViewBag.leeg
                         </p>
                     </td>
                 </tr>

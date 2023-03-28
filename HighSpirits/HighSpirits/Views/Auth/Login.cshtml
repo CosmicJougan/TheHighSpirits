@@ -15,11 +15,11 @@
         <table class="table">
             <tr>
                 <td>Gebruikersnaam</td>
-                <td><input type="text" asp-for="Gebruikersnaam" /><span asp-validation-for="Gebruikersnaam"></span></td>
+                <td><input type="text" asp-for="Gebruikersnaam" /><span class="fout" asp-validation-for="Gebruikersnaam"></span></td>
             </tr>
             <tr>
                 <td>Wachtwoord</td>
-                <td><input type="password" asp-for="Wachtwoord" /><span asp-validation-for="Wachtwoord"></span></td>
+                <td><input type="password" asp-for="Wachtwoord" /><span class="fout" asp-validation-for="Wachtwoord"></span></td>
             </tr>
         </table>
         <p><input type="submit" value="Meld mij aan..." /> <a asp-action="Registreer" class="geenLijn">Registreer hier...</a></p> 

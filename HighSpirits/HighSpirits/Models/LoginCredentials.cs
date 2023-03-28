@@ -5,8 +5,10 @@ namespace HighSpirits.Models
     {
         public int KlantId { get; set; }
 
+        [Required (ErrorMessage = "Verplicht veld!")]
         public string Gebruikersnaam { get; set; }
 
+        [Required(ErrorMessage = "Verplicht veld!")]
         public string Wachtwoord { get; set; }
         
         public string Naam { get; set; }

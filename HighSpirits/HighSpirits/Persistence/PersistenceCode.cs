@@ -1,5 +1,7 @@
 ﻿using HighSpirits.Models;
 using MySql.Data.MySqlClient;
+using NuGet.Protocol.Core.Types;
+using System.Net.Mail;
 
 namespace HighSpirits.Persistence
 {
@@ -190,7 +192,7 @@ namespace HighSpirits.Persistence
         {
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            string corrDatum = re.Geboortedatum.ToString("yyyy-MM-dd HH:mm:ss");
+            string corrDatum = Convert.ToDateTime(re.Geboortedatum).ToString("yyyy-MM-dd HH:mm:ss");
             string qry = "insert into tblKlanten (Naam, Voornaam, Email, Wachtwoord, Gebruikersnaam, Adres, Plaats, PostCode, Geboortedatum, Telefoonnummer) values " +
                 "('" +re.Naam+"','"+re.Voornaam+"','"+re.Email + "','" + re.Wachtwoord + "','" + re.Gebruikersnaam + "','" + re.Adress + "','" + re.Plaats + "','" + re.PostCode + "','" + corrDatum + "','" + re.Telefoonnummer + "')";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
@@ -220,7 +222,7 @@ namespace HighSpirits.Persistence
         {
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            string qry = "select KlantId, Naam, Voornaam, Adres,Plaats, Postcode from tblklanten " +
+            string qry = "select KlantId, Naam, Voornaam, Adres,Plaats, email, Postcode from tblklanten " +
                 "where KlantId=" + ID;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
@@ -233,6 +235,7 @@ namespace HighSpirits.Persistence
                 klant.Adress = dtr.GetString("Adres");
                 klant.Plaats = dtr.GetString("Plaats");
                 klant.PostCode = dtr.GetString("Postcode");
+                klant.Email = dtr.GetString("Email");
             }
             conn.Close();
             return klant;
@@ -256,12 +259,12 @@ namespace HighSpirits.Persistence
         }
 
         //Laad winkelmandje repo
-        public List<Product> laadWinkelmandjeProducten(Winkelmandje winkelmandje)
+        public List<Product> laadWinkelmandjeProducten(int KlantID)
         {
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
             string qry = "select tblproducten.ProductId, Productnaam, round(Aankoopprijs*1.13,2) as Verkoopprijs, Foto, aantalstuks from tblproducten " +
-                "inner join tblwinkelmandje on tblproducten.productId = tblwinkelmandje.ProductId where KlantId="+winkelmandje.KlantId;
+                "inner join tblwinkelmandje on tblproducten.productId = tblwinkelmandje.ProductId where KlantId="+KlantID;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             //maak een nieuwe lijst van producten aan
@@ -345,18 +348,95 @@ namespace HighSpirits.Persistence
             conn.Close();
         }
 
-        //winkemandje items in bestelling opslaan
+        //winkemandje items in bestellijn opslaan
 
-        public void bestelItems(Winkelmandje winkelmandje)
+        public void insertIntoBestelLijn(Bestellijn bestellijn)
         {
-            Bestellijn bestelLijn = new Bestellijn();
+
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            string qry = "insert into tblbestellijn (BestelingID, historischeprijs, aantal) " +
-                "values(" + bestelLijn.BestellingId + "," + bestelLijn.HistorischePrijs + "," + bestelLijn.Aantalstuks + ")";
+            string corrPrijs = bestellijn.HistorischePrijs.ToString().Replace(",", ".");
+            string qry = "insert into tblbestellijnen (BestellingID, ProductId, Historischeprijs, Aantalstuks) " +
+                "values(" + bestellijn.BestellingId + "," + bestellijn.ProductId + ",'" + corrPrijs + "'," + bestellijn.Aantalstuks + ")";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
+        //winkelmandje items in de bestelling zetten
+
+        public void BestelItems(Bestelling bestelling)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            string corrDatum = bestelling.Datum.ToString("yyyy-MM-dd HH:mm:ss");
+            conn.Open();
+            string qry = "insert into tblbestelling (KlantID, Datum) " +
+                "values("+bestelling.KlantId+",'"+corrDatum+"')";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        //laad bestelling
+        public Bestelling laadLaatsteBestelling(int KlantId)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "select * from tblbestelling " +
+                "where KlantId="+KlantId+" " +
+                "order by datum desc " +
+                "limit 1";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            Bestelling bestelling = new Bestelling();
+            while (dtr.Read())
+            {
+                bestelling.BestellingId = dtr.GetInt32("BestellingID");
+                bestelling.KlantId = dtr.GetInt32("KlantId");
+                bestelling.Datum = dtr.GetDateTime("Datum");
+            }
+            conn.Close();
+            return bestelling;
+        }
+
+        //delete na bestelling
+        public void clearWinkelmandje(int KlantID)
+        {
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            string qry = "delete from tblwinkelmandje where KlantId=" + KlantID;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        //maak email
+        public void stuurMail(VMbestellingen vmBestelling)
+        {
+            string Ontvanger = laadKlant(vmBestelling.bestelling.KlantId).Email;
+            string Onderwerp = "Bestelling HighSpirits";
+            string Bericht =    "We hebben u bestelling met bestelnummer "+ vmBestelling.bestelling.BestellingId +" goed ontvangen." +
+                                "Na overschrijving van € "+vmBestelling.totalen.PrijsInclusief+" op rekeningnummer BE41 0019 4020 4710 worden de goederen verpakt en verstuurd." +
+                                "Drive safe. En niet drinken en rijden, alleen bij stop lichten. " +
+                                "Bedankt voor u vertrouwen.";
+            //1. SMTP client Instellen
+            SmtpClient SMTP = new SmtpClient("smtp-mail.outlook.com");
+            SMTP.Credentials = new System.Net.NetworkCredential("HighSpirits.Shop@outlook.com", "VeelDrinkenVeelRijden");
+            SMTP.Port = 587;
+            SMTP.EnableSsl = true;
+
+
+            //2. Mailbericht Instellen
+            MailMessage Mail = new MailMessage();
+            Mail.From = new MailAddress("HighSpirits.Shop@outlook.com");
+            Mail.To.Add(Ontvanger);
+            Mail.Subject = Onderwerp;
+            Mail.Body = Bericht;
+
+            //3. Versturen
+            SMTP.Send(Mail);
+}
+
+
     }
 }

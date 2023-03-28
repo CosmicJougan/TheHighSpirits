@@ -112,7 +112,7 @@ namespace HighSpirits.Controllers
                 }
                 else
                 {
-                    ViewBag.Fout = "Positief getal in voeren!";
+                    ViewBag.Fout = "Positief geheel getal in voeren!, dit is geen wiskunde.";
                     return View(vmToevoegen);
                 }
             }
@@ -136,7 +136,6 @@ namespace HighSpirits.Controllers
         [HttpGet]
         public IActionResult Winkelmandje(VMwinkelmandje vmWinkelmandje)
         {
-
             Winkelmandje winkelmandje = new Winkelmandje();
             winkelmandje.KlantId = Convert.ToInt32(User.Identity.Name);
 
@@ -145,11 +144,26 @@ namespace HighSpirits.Controllers
             vmWinkelmandje.Klant = klant;
 
             ProductRepository productRepository = new ProductRepository();
-            productRepository.Producten = pc.laadWinkelmandjeProducten(winkelmandje);
+            productRepository.Producten = pc.laadWinkelmandjeProducten(Convert.ToInt32(User.Identity.Name));
             vmWinkelmandje.productRepository = productRepository;
 
+
             Totalen totalen = new Totalen();
-            totalen = pc.haalTotalen(winkelmandje);
+
+            if (productRepository.Producten.Count>0)
+            {
+                
+                totalen = pc.haalTotalen(winkelmandje);
+                
+            }
+            else
+            {
+                totalen.PrijsExclusief = 0.00;
+                totalen.BTW = 0.00;
+                totalen.PrijsInclusief = 0.00;
+                ViewBag.leeg = "Winkemandje is leeg, koop meer.";
+            }
+
             vmWinkelmandje.totalen = totalen;
 
             DateTime BestelDatum = DateTime.Now.Date;
@@ -161,12 +175,52 @@ namespace HighSpirits.Controllers
         [HttpPost]
         public IActionResult Winkelmandje()
         {
-            return RedirectToAction("BestelBevestiging");
+            ProductRepository productRepository = new ProductRepository();
+            productRepository.Producten = pc.laadWinkelmandjeProducten(Convert.ToInt32(User.Identity.Name));
+
+            if (productRepository.Producten.Count > 0)
+            {
+                return RedirectToAction("BestelBevestiging");
+            }
+            else
+            {
+                return RedirectToAction("Winkelmandje");
+            }
         }
 
         [HttpGet]
         public IActionResult BestelBevestiging(VMbestellingen vmBestellingen)
         {
+            Bestelling bestelling = new Bestelling();
+            bestelling.KlantId = Convert.ToInt32(User.Identity.Name);
+            bestelling.Datum = DateTime.Now;
+            pc.BestelItems(bestelling);
+            bestelling = pc.laadLaatsteBestelling(Convert.ToInt32(User.Identity.Name));
+
+            vmBestellingen.bestelling = bestelling;
+
+            Winkelmandje winkelmandje = new Winkelmandje();
+            winkelmandje.KlantId = Convert.ToInt32(User.Identity.Name);
+
+            Totalen totalen = new Totalen();
+            totalen = pc.haalTotalen(winkelmandje);
+            vmBestellingen.totalen = totalen;
+
+            ProductRepository productRepository = new ProductRepository();
+            productRepository.Producten = pc.laadWinkelmandjeProducten(Convert.ToInt32(User.Identity.Name));
+
+            foreach(var product in productRepository.Producten)
+            {
+                Bestellijn bestellijn = new Bestellijn();
+                bestellijn.BestellingId = bestelling.BestellingId;
+                bestellijn.ProductId = product.ProductID;
+                bestellijn.HistorischePrijs = product.Verkoopprijs;
+                bestellijn.Aantalstuks = product.Voorraad;
+                pc.insertIntoBestelLijn(bestellijn);
+            }
+            pc.stuurMail(vmBestellingen);
+            pc.clearWinkelmandje(Convert.ToInt32(User.Identity.Name));
+
             return View(vmBestellingen);
         }
 
