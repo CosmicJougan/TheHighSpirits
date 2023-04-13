@@ -11,7 +11,8 @@
 </head>
 <body class="m-3">
     <form asp-action="Registreer" asp-controller="auth">
-        <h2>Registreren</h2>
+        <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> - Registreren</h2>
+        
         <table class="table">
             <tr>
                 <td>Naam</td>
@@ -59,7 +60,7 @@
             </tr>
             
         </table>
-        <p><input type="submit" value="Meld mij aan..." /></p>
+        <p><input class="btn btn-dark" type="submit" value="Creëer account..." /></p>
         <p class="fout">@ViewBag.fout</p>
     </form>
 </body>

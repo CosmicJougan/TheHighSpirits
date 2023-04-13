@@ -12,7 +12,18 @@
 <body class="m-3">
     <form asp-action="Winkelmandje" asp-controller="Home">
         <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> - artikel toevoegen aan winkelmandje </h2>
-        <table class="table noBorders">
+        @if (Model.productRepository.Producten.Count > 0)
+        {
+            <div class="position-relative m-4">
+                <div class="progress" style="height: 1px;">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-dark rounded-pill" style="width: 2rem; height:2rem;">1</button>
+                <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-dark rounded-pill" style="width: 2rem; height:2rem;">2</button>
+                <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+            </div>
+        }
+        <table class="table table-borderless">
             <tr>
                 <td>
                     Klantnummer:
@@ -65,7 +76,7 @@
             </tr>
         </table>
         <table class="table">
-            <tr>
+                <tr class="table-dark">
                 <td>
 
                 </td>
@@ -93,7 +104,12 @@
                 {
                     <tr>
                         <td>
-                            <a asp-action="delete" asp-route-ProductID="@artikel.ProductID">wordt logo</a>
+                            <a asp-action="delete" asp-route-ProductID="@artikel.ProductID" class="btn btn-outline-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                </svg>
+                            </a>
                         </td>
                         <td>
                             <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)" />
@@ -119,7 +135,7 @@
             else
             {
                 <tr>
-                    <td>
+                    <td colspan="7">
                         <p>
                             @ViewBag.leeg
                         </p>
@@ -127,33 +143,32 @@
                 </tr>
             }
         </table>
-        <table>
-            <tr >
+       
+        <table class="rechts">
+            <tr>  
                 <td>
                     Totaal Excl.:
-                </td>
-                <td>
-                    @Model.totalen.PrijsExclusief
+               
+                    € @Model.totalen.PrijsExclusief
                 </td>
             </tr>
             <tr>
+            
                 <td>
                     BTW (21%):
-                </td>
-                <td>
-                    @Model.totalen.BTW
+              
+                    € @Model.totalen.BTW
                 </td>
             </tr>
             <tr>
                 <td>
                     Totaal Incl.:
-                </td>
-                <td>
-                    @Model.totalen.PrijsInclusief
+              
+                    € @Model.totalen.PrijsInclusief
                 </td>
             </tr>
         </table>
-        <p class="text-center"><input type="submit" value="Bestellen en betalen" /></p>
+        <p class="text-center"><input class="btn btn-dark" type="submit" value="Bestellen en betalen" /></p>
         <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>
     </form>
 </body>

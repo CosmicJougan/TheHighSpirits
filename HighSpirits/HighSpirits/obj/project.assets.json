@@ -10008,23 +10008,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Leerling6ITN\\.nuget\\packages\\": {},
+    "C:\\Users\\stagiair\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Leerling6ITN\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\HighSpirits.csproj",
+      "projectUniqueName": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\HighSpirits.csproj",
       "projectName": "HighSpirits",
-      "projectPath": "C:\\Users\\Leerling6ITN\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\HighSpirits.csproj",
-      "packagesPath": "C:\\Users\\Leerling6ITN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Leerling6ITN\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\obj\\",
+      "projectPath": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\HighSpirits.csproj",
+      "packagesPath": "C:\\Users\\stagiair\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Leerling6ITN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\stagiair\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10033,6 +10033,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10083,7 +10084,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -307,7 +307,7 @@ namespace HighSpirits.Persistence
         {
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            string qry = "select Round(sum(aankoopprijs*1.13*aantalstuks),2) as VerkoopPrijsExcl, Round(sum(aankoopprijs*0.21*aantalstuks),2) as BTW, ( Round(sum(aankoopprijs*1.13*aantalstuks),2)+Round(sum(aankoopprijs*0.21*aantalstuks),2)) as VerkoopPrijsIncl from tblProducten " +
+            string qry = "select Round(sum(aankoopprijs*1.13*aantalstuks),2) as VerkoopPrijsExcl, Round(sum(aankoopprijs*0.21*aantalstuks),2) as BTW, Round((sum(aankoopprijs*1.13*aantalstuks))+(sum(aankoopprijs*0.21*aantalstuks)),2) as VerkoopPrijsIncl from tblProducten " +
                 "inner join tblwinkelmandje on tblproducten.productId = tblwinkelmandje.productId where KlantId=" + winkelmandje.KlantId;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();

@@ -22,7 +22,7 @@ namespace HighSpirits.Controllers
         {
             var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, 1.ToString())
+                        new Claim(ClaimTypes.Name, 2.ToString())
                     };
             var userIdentity = new ClaimsIdentity(claims, "SecureLogin");
             var userPrincipal = new ClaimsPrincipal(userIdentity);
@@ -57,6 +57,7 @@ namespace HighSpirits.Controllers
             if (pc.zoekVoorraad(winkelmandje) == 0)
             {
                 ViewBag.Voorraad = "Out of stock.";
+                ViewBag.Fout = "Voorraad is op!";
                 return View(vmToevoegen);
             }
             else
@@ -85,6 +86,7 @@ namespace HighSpirits.Controllers
             if (pc.zoekVoorraad(winkelmandje) == 0)
             {
                 ViewBag.Voorraad = "Out of stock.";
+                ViewBag.Fout = "Voorraad is op! Het blijft zo tot de volgende levering!";
                 return View(vmToevoegen);
             }
             else
@@ -166,7 +168,7 @@ namespace HighSpirits.Controllers
 
             vmWinkelmandje.totalen = totalen;
 
-            DateTime BestelDatum = DateTime.Now.Date;
+            string BestelDatum = DateTime.Now.Date.ToString("yyyy-MM-dd");
             ViewBag.Datum = BestelDatum;
 
             return View(vmWinkelmandje);

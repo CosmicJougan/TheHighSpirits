@@ -12,6 +12,14 @@
 <body class="m-3">
     <form asp-action="Toevoegen" asp-controller="Home">
         <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png"/> - artikel toevoegen aan winkelmandje </h2>
+        <div class="position-relative m-4">
+            <div class="progress" style="height: 1px;">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-dark rounded-pill" style="width: 2rem; height:2rem;">1</button>
+            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
+            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+        </div>
         <table class="table text-center">
             <tr>
                 <td rowspan="5">
@@ -56,14 +64,13 @@
                     @Model.product.Omschrijving
                 </td>
             </tr>
-            <tr>
-                <td colspan="3">
-                    <p>Aantal toe te voegen aan winkelmandje: <input type="text" asp-for="@Model.winkelmandje.Aantalstuks" /> <input type="submit" value="Voeg aan winkelmandje toe..." /></p>
-                </td>
-            </tr>   
         </table>
+            
+       <p class="text-center">Aantal toe te voegen aan winkelmandje: <input type="text" asp-for="@Model.winkelmandje.Aantalstuks" /> <input class="btn btn-dark" type="submit" value="Voeg aan winkelmandje toe..." /></p>
+        
+        <p class="text-center fout">@ViewBag.Fout</p>
         <p class="text-center"><a asp-action="Index" class="geenLijn">Ga terug naar catalogus...</a></p>
-        <p class="text-center text-danger font-weight-bold">@ViewBag.Fout</p>
+        
     </form>
 </body>
 </html>
