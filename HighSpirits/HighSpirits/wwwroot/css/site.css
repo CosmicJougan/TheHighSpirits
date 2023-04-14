@@ -1,5 +1,5 @@
 .artikelKlein{
-    width: 200px;
+    height: 140px;
 }
 .artikelGroot {
     height:380px;
@@ -40,11 +40,11 @@
     width: 1em;
 }
 .rechts{
-    width:100%;
+    
     align-content:end;
 }
 .links{
-    width:100%;
+   
     align-content:start;
 }
 .tekstVakVol{
@@ -62,4 +62,10 @@
 .tekstVak1Vierde {
     width: 100px;
     height: 40px;
+}
+.bordered{
+    border:solid;
+}
+.AP{
+    padding:15px;
 }
