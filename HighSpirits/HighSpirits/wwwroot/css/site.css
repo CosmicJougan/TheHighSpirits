@@ -47,3 +47,19 @@
     width:100%;
     align-content:start;
 }
+.tekstVakVol{
+    width:400px;
+    height:40px;
+}
+.tekstVak3Kwart {
+    width: 300px;
+    height: 40px;
+}
+.tekstVakHalf {
+    width: 200px;
+    height: 40px;
+}
+.tekstVak1Vierde {
+    width: 100px;
+    height: 40px;
+}

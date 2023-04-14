@@ -9,54 +9,62 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
-<body class="m-3">
+<body class="m-3 text-center">
     <form asp-action="Registreer" asp-controller="auth">
         <h2 class="text-center"><img class="artikelKlein" src="~/images/HighSpiritsLogo.png" /> - Registreren</h2>
         
-        <table class="table">
+        <table class="table table-borderless text-center">
             <tr>
-                <td>Naam</td>
-                <td><input type="text" asp-for="Naam" /><span class="fout" asp-validation-for="Naam"></span></td>
+                <td class="m-3"><span class="fout" asp-validation-for="Voornaam"></span> test</td>
+                <td class="m-3"><input type="text" asp-for="Voornaam" placeholder=" Voornaam" class="tekstVakHalf" /><input type="text" asp-for="Naam" placeholder=" Achternaam" class="tekstVakHalf" /></td>
+                <td class="m-3"><span class="fout" asp-validation-for="Naam"></span> test</td>
             </tr>
             <tr>
-                <td>Voornaam</td>
-                <td><input type="text" asp-for="Voornaam" /><span class="fout" asp-validation-for="Voornaam"></span></td>
+                <td class="m-3"></td>
+                <td class="m-3"><input type="email" asp-for="Email" placeholder=" Email adres" class="tekstVakVol" /></td>
+                <td class="m-3"><span class="fout" asp-validation-for="Email"></span></td>
             </tr>
             <tr>
-                <td>Gebruikersnaam</td>
-                <td><input type="text" asp-for="Gebruikersnaam" /><span class="fout" asp-validation-for="Gebruikersnaam"></span></td>
+                <td class="m-3"></td>
+                <td class="m-3"><input type="text" asp-for="Gebruikersnaam" placeholder=" Gebruikersnaam" class="tekstVakVol" /></td>
+                <td class="m-3"><span class="fout" asp-validation-for="Gebruikersnaam"></span></td>
             </tr>
             <tr>
-                <td>Wachtwoord</td>
-                <td><input type="password" asp-for="Wachtwoord" /><span class="fout" asp-validation-for="Wachtwoord"></span></td>
+                <td class="m-3"></td>
+                <td class="m-3"><input type="password" asp-for="Wachtwoord" placeholder=" Wachtwoord" class="tekstVakVol" /></td>
+                <td class="m-3"><span class="fout" asp-validation-for="Wachtwoord"></span></td>
             </tr>
             <tr>
-                <td>Bevestig Wachtwoord</td>
-                <td><input type="password" asp-for="BevestigWW" /><span class="fout" asp-validation-for="BevestigWW"></span></td>
+                <td class="m-3"></td>
+                <td class="m-3"><input type="password" asp-for="BevestigWW" placeholder=" Bevestig wachtwoord" class="tekstVakVol" /></td>
+                <td class="m-3"><span class="fout" asp-validation-for="BevestigWW"></span></td>
+            </tr>
+ 
+            <tr>
+                <td></td>
+                <td><input type="number" asp-for="Telefoonnummer" placeholder=" Telefoonnummer" class="tekstVakVol" /></td>
+                <td><span class="fout" asp-validation-for="Telefoonnummer"></span></td>
             </tr>
             <tr>
-                <td>E-mail adres</td>
-                <td><input type="email" asp-for="Email" /><span class="fout" asp-validation-for="Email"></span></td>
+                <td></td>
+                <td><input type="text" asp-for="Adress" placeholder=" Adres" class="tekstVakVol" /></td
+                 <td><span class="fout" asp-validation-for="Adress"></span></td>
             </tr>
             <tr>
-                <td>Telefoon nummer</td>
-                <td><input type="number" asp-for="Telefoonnummer" /><span class="fout" asp-validation-for="Telefoonnummer"></span></td>
+                <td><span class="fout" asp-validation-for="Plaats"></span></td>
+                <td>
+                    <input type="text" asp-for="Plaats" placeholder=" Plaats" class="tekstVak3Kwart" />
+
+                    <input type="text" asp-for="PostCode" placeholder=" Postcode" class="tekstVak1Vierde" />
+                </td>
+                <td>
+                    <span class="fout" asp-validation-for="PostCode"></span>
+                </td>
             </tr>
             <tr>
-                <td>Adres</td>
-                <td><input type="text" asp-for="Adress" /><span class="fout" asp-validation-for="Adress"></span></td>
-            </tr>
-            <tr>
-                <td>Plaats</td>
-                <td><input type="text" asp-for="Plaats" /><span class="fout" asp-validation-for="Plaats"></span></td>
-            </tr>
-            <tr>
-                <td>PostCode</td>
-                <td><input type="text" asp-for="PostCode" /><span class="fout" asp-validation-for="PostCode"></span></td>
-            </tr>
-            <tr>
-                <td>Geboorte Datum</td>
-                <td><input type="datetime" asp-for="Geboortedatum" /><span class="fout" asp-validation-for="Geboortedatum"></span></td>
+                <td></td>
+                <td><input type="datetime" asp-for="Geboortedatum" placeholder=" Geboortedatum" class="tekstVakVol" /></td>
+                <td><span class="fout" asp-validation-for="Geboortedatum"></span></td>
             </tr>
             
         </table>
