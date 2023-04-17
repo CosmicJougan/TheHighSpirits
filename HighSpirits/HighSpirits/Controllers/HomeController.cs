@@ -54,16 +54,7 @@ namespace HighSpirits.Controllers
             product = pc.laadProduct(winkelmandje.ProductId);
             vmToevoegen.product = product;
             HttpContext.Session.SetInt32("ProductId", winkelmandje.ProductId);
-            if (pc.zoekVoorraad(winkelmandje) == 0)
-            {
-                ViewBag.Voorraad = "Out of stock.";
-                ViewBag.Fout = "Voorraad is op!";
-                return View(vmToevoegen);
-            }
-            else
-            {
-                ViewBag.Voorraad = pc.zoekVoorraad(winkelmandje);
-            }
+            
 
                 return View(vmToevoegen);
         }
@@ -83,15 +74,7 @@ namespace HighSpirits.Controllers
             winkelmandje.Aantalstuks = vmToevoegen.winkelmandje.Aantalstuks;
             vmToevoegen.winkelmandje = winkelmandje;
 
-            if (pc.zoekVoorraad(winkelmandje) == 0)
-            {
-                ViewBag.Voorraad = "Out of stock.";
-                ViewBag.Fout = "Voorraad is op! Het blijft zo tot de volgende levering!";
-                return View(vmToevoegen);
-            }
-            else
-            {
-                ViewBag.Voorraad = pc.zoekVoorraad(winkelmandje);
+            
                 if(winkelmandje.Aantalstuks > 0)
                 {
                     if (pc.zoekVoorraad(winkelmandje) >= winkelmandje.Aantalstuks)
@@ -116,10 +99,7 @@ namespace HighSpirits.Controllers
                 {
                     ViewBag.Fout = "Positief geheel getal in voeren!, dit is geen wiskunde.";
                     return View(vmToevoegen);
-                }
-            }
-            
-            
+                }   
         }
 
         [HttpGet]

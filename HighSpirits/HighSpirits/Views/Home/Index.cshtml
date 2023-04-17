@@ -50,13 +50,28 @@
                         <img class="artikelKlein" src="@Url.Content("~/images/"+@artikel.Foto)"/>
                     </td>
                     <td>
-                        @artikel.Verkoopprijs
+                       € @artikel.Verkoopprijs
                     </td>
                     <td>
-                        @artikel.Voorraad
+                        @if (@artikel.Voorraad > 0)
+                        {
+                            @artikel.Voorraad
+                        }
+                        else
+                        {
+                            <span>Out of Stock</span>
+                        }
+
                     </td>
                     <td>
-                        <p><a asp-action="Toevoegen" asp-route-ProductID="@artikel.ProductID" class="geenLijn">Voeg toe aan winkelmandje...</a></p>
+                        @if (@artikel.Voorraad > 0)
+                        {
+                            <p><a asp-action="Toevoegen" asp-route-ProductID="@artikel.ProductID" class="geenLijn">Voeg toe aan winkelmandje...</a></p>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Product niet beschikbaar</span>
+                        }
                     </td>
                 </tr>
             }

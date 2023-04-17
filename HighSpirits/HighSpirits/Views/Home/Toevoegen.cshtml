@@ -25,7 +25,7 @@
                 <td rowspan="5">
                     <img class="artikelGroot" src="@Url.Content("~/images/"+Model.product.Foto)" />
                 </td>
-                <td>
+                <td class="fw-bold">
                     ArtNr.
                 </td>
                 <td>
@@ -33,7 +33,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="fw-bold">
                    Naam
                 </td>
                 <td>
@@ -41,23 +41,23 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="fw-bold">
                     Verkoopprijs
                 </td>
                 <td>
-                    @Model.product.Verkoopprijs
+                    € @Model.product.Verkoopprijs
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="fw-bold">
                     Voorraad
                 </td>
                 <td>
-                    @ViewBag.Voorraad
+                    @Model.product.Voorraad
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="fw-bold">
                     Omschrijving
                 </td>
                 <td>
