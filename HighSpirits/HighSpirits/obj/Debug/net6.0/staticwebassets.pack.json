@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\Character1Whiskey.jpg",
+      "PackagePath": "staticwebassets\\images\\Character1Whiskey.jpg"
+    },
+    {
       "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\CrownRoyal.png",
       "PackagePath": "staticwebassets\\images\\CrownRoyal.png"
     },
@@ -29,20 +33,16 @@
       "PackagePath": "staticwebassets\\images\\JackDaniels.png"
     },
     {
+      "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\JohnnieWalker.png",
+      "PackagePath": "staticwebassets\\images\\JohnnieWalker.png"
+    },
+    {
+      "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\WhiskeyKarakter2.png",
+      "PackagePath": "staticwebassets\\images\\WhiskeyKarakter2.png"
+    },
+    {
       "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\WildTurkey.png",
       "PackagePath": "staticwebassets\\images\\WildTurkey.png"
-    },
-    {
-      "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\lock-fill.svg",
-      "PackagePath": "staticwebassets\\images\\lock-fill.svg"
-    },
-    {
-      "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\person-circle.svg",
-      "PackagePath": "staticwebassets\\images\\person-circle.svg"
-    },
-    {
-      "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\trash.svg",
-      "PackagePath": "staticwebassets\\images\\trash.svg"
     },
     {
       "Id": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\js\\site.js",

@@ -20,16 +20,6 @@ namespace HighSpirits.Controllers
         [HttpGet]
         public IActionResult Index(ProductRepository productRepository)
         {
-            var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, 2.ToString())
-                    };
-            var userIdentity = new ClaimsIdentity(claims, "SecureLogin");
-            var userPrincipal = new ClaimsPrincipal(userIdentity);
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                userPrincipal,
-                new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(2), IsPersistent = false });
-
             productRepository.Producten = pc.loadProducten();
             return View(productRepository);
         }

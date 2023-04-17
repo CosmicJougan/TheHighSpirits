@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zRX1niYmwPJB7CLLGnVQ77TUInW3G7m/6ac7fewyH2k=",
+  "Hash": "pi8rv7ZXCf9ekhhngEUp6QAbibW96Kalv2Yc8gmAqOc=",
   "Source": "HighSpirits",
   "BasePath": "_content/HighSpirits",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\Character1Whiskey.jpg",
+      "SourceId": "HighSpirits",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\",
+      "BasePath": "_content/HighSpirits",
+      "RelativePath": "images/Character1Whiskey.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Character1Whiskey.jpg"
     },
     {
       "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\CrownRoyal.png",
@@ -136,12 +153,12 @@
       "OriginalItemSpec": "wwwroot\\images\\JackDaniels.png"
     },
     {
-      "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\lock-fill.svg",
+      "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\JohnnieWalker.png",
       "SourceId": "HighSpirits",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\",
       "BasePath": "_content/HighSpirits",
-      "RelativePath": "images/lock-fill.svg",
+      "RelativePath": "images/JohnnieWalker.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -150,15 +167,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\lock-fill.svg"
+      "OriginalItemSpec": "wwwroot\\images\\JohnnieWalker.png"
     },
     {
-      "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\person-circle.svg",
+      "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\WhiskeyKarakter2.png",
       "SourceId": "HighSpirits",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\",
       "BasePath": "_content/HighSpirits",
-      "RelativePath": "images/person-circle.svg",
+      "RelativePath": "images/WhiskeyKarakter2.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -167,24 +184,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\person-circle.svg"
-    },
-    {
-      "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\trash.svg",
-      "SourceId": "HighSpirits",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\",
-      "BasePath": "_content/HighSpirits",
-      "RelativePath": "images/trash.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\trash.svg"
+      "OriginalItemSpec": "wwwroot\\images\\WhiskeyKarakter2.png"
     },
     {
       "Identity": "C:\\Users\\stagiair\\git\\TheHighSpirits\\HighSpirits\\HighSpirits\\wwwroot\\images\\WildTurkey.png",
